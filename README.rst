@@ -88,16 +88,24 @@ Installation will add the ``anyblok`` commands to the environment.
 
 Running Tests
 -------------
+Install the required packages to run them with ``pytest``:: 
 
-To run framework tests with ``pytest``::
+   pip install pytest pytest-cov
 
-    pip install pytest
-    ANYBLOK_DATABASE_DRIVER=postgresql ANYBLOK_DATABASE_NAME=test_anyblok py.test anyblok/tests
+To run framework tests::
+
+    ANYBLOK_DATABASE_DRIVER=postgresql ANYBLOK_DATABASE_USER=postgres ANYBLOK_DATABASE_NAME=test_anyblok py.test anyblok/tests
+
+Install everything to plug AnyBlok to your database.
+Example for PostgreSQL::
+   apt install graphviz postgresql postgresql-server-dev-11
+   pip install psycopg2-binary
+   
 
 To run tests of all installed bloks::
 
-    anyblok_createdb --db-name test_anyblok --db-driver-name postgresql --install-all-bloks
-    ANYBLOK_DATABASE_DRIVER=postgresql ANYBLOK_DATABASE_NAME=test_anyblok py.test anyblok/bloks
+    anyblok_createdb --db-user postgres --db-name test_anyblok --db-driver-name postgresql --install-all-bloks
+    ANYBLOK_DATABASE_DRIVER=postgresql ANYBLOK_DATABASE_USER=postgres ANYBLOK_DATABASE_NAME=test_anyblok py.test anyblok/bloks
 
 AnyBlok is tested continuously using `Travis CI
 <https://travis-ci.org/AnyBlok/AnyBlok>`_
